@@ -2,6 +2,9 @@
   <div>
     <label>Check-in Date:</label>
     <input type="date" formControlName="checkInDate" />
+    <div *ngIf="reservationForm.get('checkInDate').invalid">
+      Check-in date is required
+    </div>
   </div>
 
   <div>
