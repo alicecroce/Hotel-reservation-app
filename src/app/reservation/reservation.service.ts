@@ -8,6 +8,11 @@ export class ReservationService {
 
   private reservations:Reservation[]= [];
 
+  constructor(){
+    let savedReservations=localStorage.getItem("reservations");
+    this.reservations=savedReservations?JSON.parse(savedReservations):[];
+  }
+
   //CRUD
 
   //restituisce tutte le prenotazioni: READ
@@ -23,18 +28,21 @@ export class ReservationService {
   //pushiamo la prenotazione all'interno del sistema: CREATE
   addReservation(reservation:Reservation):void{
     this.reservations.push(reservation);
+    localStorage.setItem("reservations",JSON.stringify(this.reservations)); 
   }
 
   //cancelliamo la prenotazione: DELETE
   deleteReservation(id:string):void{
     let index=this.reservations.findIndex(res=>res.id===id);
     this.reservations.splice(index,1);
+    localStorage.setItem("reservations",JSON.stringify(this.reservations)); 
   }
 
   //carichiamo la prenotazione a sistema: UPDATE
   updateReservation(updateReservation:Reservation):void{
     let index=this.reservations.findIndex(res=>res.id===updateReservation.id);
     this.reservations[index]=updateReservation;
+    localStorage.setItem("reservations",JSON.stringify(this.reservations)); 
   }
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ReservationService } from '../reservation/reservation.service';
+import { Reservation } from '../models/reservation';
 
 @Component({
   selector: 'app-reservation-form',
@@ -10,9 +12,10 @@ export class ReservationFormComponent implements OnInit  {
 
   reservationForm:FormGroup=new FormGroup({});
 
-  constructor(private FormBuilder:FormBuilder){
+  constructor(private FormBuilder:FormBuilder,
+    private reservationService:ReservationService){
 
-  }
+    }
 
     ngOnInit(): void {
       this.reservationForm=this.FormBuilder.group({
@@ -26,7 +29,11 @@ export class ReservationFormComponent implements OnInit  {
 
     onSubmit(){
       if(this.reservationForm.valid){
-        console.log("valid");
+
+
+
+        let reservation:Reservation=this.reservationForm.value;
+        this.reservationService.addReservation(reservation)
       }
     }
 }
