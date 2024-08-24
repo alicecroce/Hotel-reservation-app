@@ -1,8 +1,10 @@
+<app-home></app-home>
+
 <h2>Reservation List</h2>
 
 <ul *ngIf="reservations.length; else noReservation">
   <li *ngFor="let reservation of reservations">
-    Guest:{{ reservation.guastName }} <br />
+    Guest:{{ reservation.guestName }} <br />
     Email:{{ reservation.guestEmail }} <br />
     Room No:{{ reservation.roomNumber }} <br />
     Check-in:{{ reservation.checkInDate }} <br />

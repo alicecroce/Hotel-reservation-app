@@ -40,7 +40,7 @@ export class ReservationService {
   }
 
   //carichiamo la prenotazione a sistema: UPDATE
-  updateReservation(updateReservation:Reservation):void{
+  updateReservation(id:string, updateReservation:Reservation):void{
     let index=this.reservations.findIndex(res=>res.id===updateReservation.id);
     this.reservations[index]=updateReservation;
     localStorage.setItem("reservations",JSON.stringify(this.reservations)); 
