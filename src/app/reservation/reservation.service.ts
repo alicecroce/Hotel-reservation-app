@@ -27,6 +27,7 @@ export class ReservationService {
 
   //pushiamo la prenotazione all'interno del sistema: CREATE
   addReservation(reservation:Reservation):void{
+    reservation.id=Date.now().toString();//rendo l'ID univoco
     this.reservations.push(reservation);
     localStorage.setItem("reservations",JSON.stringify(this.reservations)); 
   }
